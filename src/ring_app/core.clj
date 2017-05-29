@@ -12,7 +12,8 @@
 
 (defn handler [request]
   (compojure/routes
-    (compojure/GET "/" request response-handler)))
+    (compojure/GET "/" request response-handler)
+    (compojure/GET ":id" [id] (str "<p>the id is: " id "</p>"))))
 
 (defn -main []
   (jetty/run-jetty
