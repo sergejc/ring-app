@@ -10,11 +10,10 @@
          (:remote-addr request)
          "</body></html>")))
 
-(defn handler [request]
-  (compojure/routes
-    (compojure/GET "/" request response-handler)
-    (compojure/GET ":id" [id] (str "<p>the id is: " id "</p>"))
-    (compojure/POST "/json" [id] (response/ok {:result id}))))
+(compojure/defroutes handler
+  (compojure/GET "/" request response-handler)
+  (compojure/GET ":id" [id] (str "<p>the id is: " id "</p>"))
+  (compojure/POST "/json" [id] (response/ok {:result id})))
 
 (defn -main []
   (jetty/run-jetty
